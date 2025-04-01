@@ -4,12 +4,18 @@ import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import Submit from "@/app/components/auth/Submit";
 import { ChangeEvent } from "react";
+import useFormValidate from "@/app/hooks/useFormValidate";
+import { SignUpSchema } from "@/app/schemas/auth";
 
 const SignUpForm = () => {
+  // zod schema validation custom hook
+  const { errors, validateField } = useFormValidate(SignUpSchema);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    console.log(name, value, `:name,value`);
+    validateField(name, value);
   };
+
   return (
     <FormCard
       title="회원가입"
