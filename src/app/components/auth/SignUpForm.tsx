@@ -34,6 +34,7 @@ const SignUpForm = () => {
             id="name"
             name="name"
             placeholder="이름을 입력해주세요"
+            error={!!errors?.name}
             onChange={handleChange}
           />
           {errors?.name && <FormMessage>{errors?.name[0]}</FormMessage>}
@@ -46,6 +47,7 @@ const SignUpForm = () => {
             name="email"
             type="email"
             placeholder="이메일@도메인.com"
+            error={!!errors?.email}
             onChange={handleChange}
           />
           {errors?.email && <FormMessage>{errors?.email[0]}</FormMessage>}
@@ -58,6 +60,7 @@ const SignUpForm = () => {
             name="pw"
             type="password"
             placeholder="******"
+            error={!!errors?.pw}
             onChange={handleChange}
           />
           {errors?.pw && <FormMessage>{errors?.pw[0]}</FormMessage>}
