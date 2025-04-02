@@ -16,7 +16,7 @@ const useFormValidate = <T,>(schema: ZodObject<ZodRawShape>) => {
     } else {
       setErrors((prev) => ({ ...errors, [name]: "" }));
     }
-    console.log("parsed value", parsedValue);
+    // console.log("parsed value", parsedValue);
   };
   return { errors, validateField };
 };
