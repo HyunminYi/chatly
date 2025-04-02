@@ -3,13 +3,17 @@ import FormCard from "@/app/components/auth/FormCard";
 import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import Submit from "@/app/components/auth/Submit";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import useFormValidate from "@/app/hooks/useFormValidate";
 import { SignUpSchema } from "@/app/schemas/auth";
 import { TSignUpFormError } from "@/app/types/form";
 import FormMessage from "@/app/components/auth/FormMessage";
+import { useFormState } from "react-dom";
+import { signUp } from "@/app/actions/signup";
+import { toast } from "@/app/hooks/use-toast";
 
 const SignUpForm = () => {
+  const [error, action] = useFormState(signUp, null);
   // zod schema validation custom hook
   const { errors, validateField } =
     useFormValidate<TSignUpFormError>(SignUpSchema);
@@ -18,6 +22,16 @@ const SignUpForm = () => {
     const { name, value } = event.target;
     validateField(name, value);
   };
+
+  useEffect(() => {
+    if (error?.errorMessage) {
+      toast({
+        title: "회원가입 실패",
+        description: error.errorMessage,
+        variant: "destructive",
+      });
+    }
+  }, [error]);
   return (
     <FormCard
       title="회원가입"
@@ -26,7 +40,7 @@ const SignUpForm = () => {
         href: "/login",
       }}
     >
-      <form className="space-y-6">
+      <form action={action} className="space-y-6">
         {/*이름*/}
         <div className="space-y-1">
           <Label htmlFor="name">이름</Label>
