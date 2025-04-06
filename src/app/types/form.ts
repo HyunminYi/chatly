@@ -3,3 +3,7 @@ export type TSignUpFormError = {
   email?: string[];
   pw?: string[];
 };
+export type TLoginFormError = {
+  email?: string[];
+  pw?: string[];
+};

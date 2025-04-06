@@ -15,3 +15,12 @@ export const SignUpSchema = z.object({
     .regex(/[a-z]/, { message: "소문자가 포함되어야 합니다." })
     .regex(/[0-9]/, { message: "숫자가 포함되어야 합니다." }),
 });
+
+export const LoginSchema = z.object({
+  email: z.string().email({
+    message: "올바른 이메일 형식에 맞지 않습니다.",
+  }),
+  pw: z.string().min(8, {
+    message: "비밀번호는 8자리 이상이어야 합니다.",
+  }),
+});
