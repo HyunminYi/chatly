@@ -2,6 +2,7 @@ import Logo from "@/app/components/chat/Logo";
 import { MessageSquare, Plus } from "lucide-react";
 import { BASE_URL, CHAT_ROUTES } from "@/app/constants/routes";
 import SidebarItem from "@/app/components/chat/SidebarItem";
+import LogoutButton from "@/app/components/chat/LogoutButton";
 
 const DUMMY_ITEMS = [
   {
@@ -26,9 +27,9 @@ const DUMMY_ITEMS = [
 
 const Sidebar = () => {
   return (
-    <nav className="h-full p-3 bg-black flex flex-col text-white ">
+    <nav className="h-full p-2 bg-black flex flex-col text-white ">
       {/*로고 영역 + 메뉴 아이템*/}
-      <div className="flex-1 overflow-y-auto m-2">
+      <div className="flex-1 overflow-y-auto">
         <Logo />
         <div className="flex flex-col gap-2 mt-10">
           {DUMMY_ITEMS.map((item) => (
@@ -37,7 +38,9 @@ const Sidebar = () => {
         </div>
       </div>
       {/*  로그아웃 버튼 영역*/}
-      <div>로그아웃</div>
+      <div className="flex justify-center">
+        <LogoutButton />
+      </div>
     </nav>
   );
 };
