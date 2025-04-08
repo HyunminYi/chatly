@@ -1,5 +1,6 @@
 import { IChildren } from "@/app/types/common";
 import Sidebar from "@/app/components/chat/Sidebar";
+import Header from "@/app/components/chat/Header";
 
 const Layout = ({ children }: IChildren) => {
   return (
@@ -9,8 +10,10 @@ const Layout = ({ children }: IChildren) => {
         <Sidebar />
       </div>
       {/*header*/}
-      <div></div>
-      {children}
+      <div className="flex flex-col flex-1 h-full">
+        <Header />
+        {children}
+      </div>
     </div>
   );
 };
