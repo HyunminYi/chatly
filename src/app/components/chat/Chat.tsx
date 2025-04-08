@@ -3,7 +3,7 @@
 import Empty from "@/app/components/chat/Empty";
 import Message from "@/app/components/chat/Message";
 import AutoResizingTextarea from "@/app/components/chat/AutoResizingTextarea";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { ArrowUp } from "lucide-react";
 const MESSAGE_DUMMY = [
@@ -16,6 +16,14 @@ const MESSAGE_DUMMY = [
 ];
 const Chat = () => {
   const [value, setValue] = useState<string>("");
+  // 스크롤바텀 로직
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
   return (
     <div className="flex flex-col w-[80%] h-full mx-auto">
       <div className="flex-1">
@@ -33,7 +41,7 @@ const Chat = () => {
           </>
         )}
       </div>
-      <div className="pb-5">
+      <div className="pb-5 sticky bottom-0 bg-white">
         {/* TODO react hook form install */}
         <form className="flex items-center justify-center gap-4">
           <AutoResizingTextarea
@@ -45,6 +53,7 @@ const Chat = () => {
           </Button>
         </form>
       </div>
+      <div ref={scrollRef}></div>
     </div>
   );
 };
