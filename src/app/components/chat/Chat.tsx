@@ -1,15 +1,23 @@
+"use client";
+
 import Empty from "@/app/components/chat/Empty";
 import Message from "@/app/components/chat/Message";
-
+import AutoResizingTextarea from "@/app/components/chat/AutoResizingTextarea";
+import { useState } from "react";
+import { Button } from "@/app/components/ui/button";
+import { ArrowUp } from "lucide-react";
+const MESSAGE_DUMMY = [
+  { id: "1", content: "더미데이터1", role: "user" },
+  { id: "2", content: "더미데이터2", role: "assistant" },
+  { id: "3", content: "더미데이터1", role: "user" },
+  { id: "4", content: "더미데이터2", role: "assistant" },
+  { id: "5", content: "더미데이터1", role: "user" },
+  { id: "6", content: "더미데이터2", role: "assistant" },
+];
 const Chat = () => {
-  const MESSAGE_DUMMY = [
-    { id: "1", content: "더미데이터1", role: "user" },
-    { id: "2", content: "더미데이터2", role: "assistant" },
-  ];
-
+  const [value, setValue] = useState<string>("");
   return (
     <div className="flex flex-col w-[80%] h-full mx-auto">
-      {/*  채팅영역   */}
       <div className="flex-1">
         {MESSAGE_DUMMY.length === 0 ? (
           <Empty />
@@ -25,8 +33,18 @@ const Chat = () => {
           </>
         )}
       </div>
-      {/*  input영역  */}
-      <div></div>
+      <div className="pb-5">
+        {/* TODO react hook form install */}
+        <form className="flex items-center justify-center gap-4">
+          <AutoResizingTextarea
+            value={value}
+            onChange={(e) => e.target.value}
+          />
+          <Button type="submit" size="icon">
+            <ArrowUp />
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };
