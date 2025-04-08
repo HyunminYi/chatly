@@ -9,7 +9,6 @@ type Props = {
   content?: string;
   role: string;
 };
-
 const Message = ({ name = "User", content = "", role = "user" }: Props) => {
   const isAssistant = role === "assistant";
   const avatarName = isAssistant ? "CHATLY" : name;

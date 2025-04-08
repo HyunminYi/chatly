@@ -30,6 +30,7 @@ const SidebarItem = ({ item }: Props) => {
   };
   return (
     <Link
+      scroll={false}
       href={href}
       className={cn(
         "flex items-center justify-between text-sm p-3 group hover:text-white hover:bg-white/10 rounded-lg",
