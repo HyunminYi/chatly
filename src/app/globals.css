@@ -73,6 +73,12 @@
     @apply border-border;
     @apply font-aggro;
     @apply tracking-tighter;
+    @apply antialiased;
+    @apply leading-relaxed;
+    /*font smooths*/
+    p, span, h1, h2, h3, h4, h5, h6, strong, em {
+      transform: rotate(0.04deg);
+      }
   }
   body {
     @apply bg-background text-foreground;

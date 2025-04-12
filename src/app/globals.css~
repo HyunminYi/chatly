@@ -6,6 +6,17 @@
   .text-balance {
     text-wrap: balance;
   }
+  .gradient-text {
+    /*background: linear-gradient(90deg, #007BFF, #00C6FF);*/
+    background:linear-gradient(90deg, #1992FF, #60A5FA);
+    /*background: url("/logo.png") center center no-repeat;*/
+    /*color:	#1992FF;*/
+    background-clip: text;
+    color:transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    }
 }
 
 
@@ -72,7 +83,13 @@
   * {
     @apply border-border;
     @apply font-aggro;
-    @apply -tracking-tighter
+    @apply tracking-tighter;
+    @apply antialiased;
+    @apply leading-relaxed;
+    /*font smooths*/
+    p, span, h1, h2, h3, h4, h5, h6, strong, em {
+      transform: rotate(0.04deg);
+      }
   }
   body {
     @apply bg-background text-foreground;

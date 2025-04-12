@@ -53,7 +53,11 @@ const Chat = () => {
           onSubmit={handleSubmit}
         >
           <AutoResizingTextarea value={input} onChange={handleInputChange} />
-          <Button type="submit" size="icon">
+          <Button
+            type="submit"
+            size="icon"
+            className="bg-blue-500/90 hover:bg-blue-600/90 focus-visible:ring-1 ring-bg-blue-900/90"
+          >
             <ArrowUp />
           </Button>
         </form>

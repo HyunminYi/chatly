@@ -35,43 +35,45 @@ const SidebarItem = ({ item }: Props) => {
       scroll={false}
       href={href}
       className={cn(
-        "flex items-center justify-between text-sm p-3 group hover:text-white hover:bg-white/10 rounded-lg",
+        "flex items-center justify-between text-sm p-3 group hover:text-slate-800 hover:bg-slate-950/10 rounded-lg",
         isMenuOpen || pathname === href
-          ? "text-white bg-white/10"
-          : "text-zinc-400",
+          ? "text-slate-800 bg-sky-600/25  hover:bg-slate-600/20 hover:text-slate-900/90"
+          : "text-slate-800 bg-slate-100",
       )}
       onClick={() => setOpen}
     >
       {/*label 영역*/}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         {icon}
         <div className="truncate w-[180px]">{label}</div>
       </div>
       {/*드롭다운 메뉴 영역*/}
-      {/*{id !== "new" && (*/}
-      {/*  <DropdownMenu open={isMenuOpen} onOpenChange={handleMenu}>*/}
-      {/*    <DropdownMenuTrigger asChild>*/}
-      {/*      <div onClick={handleMenu}>*/}
-      {/*        <Ellipsis*/}
-      {/*          className={cn(*/}
-      {/*            "group-hover:block text-gray-400 hover:text-white",*/}
-      {/*            isMenuOpen ? "block text-white" : "md-hidden text-gray-400",*/}
-      {/*          )}*/}
-      {/*        />*/}
-      {/*      </div>*/}
-      {/*    </DropdownMenuTrigger>*/}
-      {/*    <DropdownMenuContent>*/}
-      {/*      <DropdownMenuItem>*/}
-      {/*        <Pencil className="w-4 h-4 " />*/}
-      {/*        제목 수정하기*/}
-      {/*      </DropdownMenuItem>*/}
-      {/*      <DropdownMenuItem>*/}
-      {/*        <Trash className="w-4 h-4 " />*/}
-      {/*        대화 삭제하기*/}
-      {/*      </DropdownMenuItem>*/}
-      {/*    </DropdownMenuContent>*/}
-      {/*  </DropdownMenu>*/}
-      {/*)}*/}
+      {id !== "new" && (
+        <DropdownMenu open={isMenuOpen} onOpenChange={handleMenu}>
+          <DropdownMenuTrigger asChild>
+            <div onClick={handleMenu}>
+              <Ellipsis
+                className={cn(
+                  "group-hover:block text-slate-600 hover:text-slate-800",
+                  isMenuOpen
+                    ? "block text-slate-800"
+                    : "md-hidden text-slate-900",
+                )}
+              />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <Pencil className="w-4 h-4 bottom-0.5 relative " />
+              제목 수정하기
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Trash className="w-4 h-4 bottom-0.5 relative" />
+              대화 삭제하기
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
     </Link>
   );
 };

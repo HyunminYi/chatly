@@ -18,7 +18,7 @@ const AutoResizingTextarea = ({
       value={value}
       ref={textareaRef}
       {...others}
-      className="min-h-[20px] max-h-[200px]"
+      className="min-h-[20px] max-h-[128px] font-normal tracking-normal rounded-full resize-none px-10 py-4 mx-4 focus-visible:ring-blue-400"
     />
   );
 };
