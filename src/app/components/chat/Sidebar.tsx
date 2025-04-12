@@ -27,9 +27,9 @@ const DUMMY_ITEMS = [
 
 const Sidebar = () => {
   return (
-    <nav className="h-full p-2 flex flex-col text-white ">
+    <nav className="h-full  flex flex-col text-white ">
       {/*로고 영역 + 메뉴 아이템*/}
-      <div className="flex-1 overflow-y-auto bg-slate-50">
+      <div className="flex-1 overflow-y-auto bg-slate-50 p-2">
         <Logo />
         <div className="flex flex-col gap-2 mt-10 ">
           {DUMMY_ITEMS.map((item) => (

@@ -49,14 +49,14 @@ const Chat = () => {
       <div className="pb-5 sticky bottom-0 bg-white">
         {/* TODO react hook form install */}
         <form
-          className="flex items-center justify-center gap-4"
+          className="flex items-center justify-center  w-full"
           onSubmit={handleSubmit}
         >
           <AutoResizingTextarea value={input} onChange={handleInputChange} />
           <Button
             type="submit"
             size="icon"
-            className="bg-blue-500/90 hover:bg-blue-600/90 focus-visible:ring-1 ring-bg-blue-600/90"
+            className="bg-blue-500/90 hover:bg-blue-600/90 focus-visible:ring-1 ring-bg-blue-900/90"
           >
             <ArrowUp />
           </Button>

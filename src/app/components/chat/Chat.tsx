@@ -49,7 +49,7 @@ const Chat = () => {
       <div className="pb-5 sticky bottom-0 bg-white">
         {/* TODO react hook form install */}
         <form
-          className="flex items-center justify-center gap-4"
+          className="flex items-center justify-between  w-full"
           onSubmit={handleSubmit}
         >
           <AutoResizingTextarea value={input} onChange={handleInputChange} />
