@@ -40,7 +40,7 @@ const SidebarItem = ({ item }: Props) => {
           ? "text-white bg-white/10"
           : "text-zinc-400",
       )}
-      onClick={() => setOpen(false)}
+      onClick={() => setOpen}
     >
       {/*label 영역*/}
       <div className="flex items-center gap-2">

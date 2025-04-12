@@ -8,7 +8,7 @@ type Action = {
 };
 
 const useModelStore = create<State & Action>((set) => ({
-  model: "gpt-3.5-turbo",
+  model: "claude3.5-haiku",
   updateModel: (model) => set(() => ({ model })),
 }));
 

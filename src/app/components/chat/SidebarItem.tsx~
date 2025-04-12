@@ -40,7 +40,7 @@ const SidebarItem = ({ item }: Props) => {
           ? "text-white bg-white/10"
           : "text-zinc-400",
       )}
-      onClick={()=>setOpen(false)}
+      onClick={() => setOpen}
     >
       {/*label 영역*/}
       <div className="flex items-center gap-2">
@@ -48,30 +48,30 @@ const SidebarItem = ({ item }: Props) => {
         <div className="truncate w-[180px]">{label}</div>
       </div>
       {/*드롭다운 메뉴 영역*/}
-      {id !== "new" && (
-        <DropdownMenu open={isMenuOpen} onOpenChange={handleMenu}>
-          <DropdownMenuTrigger asChild>
-            <div onClick={handleMenu}>
-              <Ellipsis
-                className={cn(
-                  "group-hover:block text-gray-400 hover:text-white",
-                  isMenuOpen ? "block text-white" : "md-hidden text-gray-400",
-                )}
-              />
-            </div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>
-              <Pencil className="w-4 h-4 " />
-              제목 수정하기
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Trash className="w-4 h-4 " />
-              대화 삭제하기
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )}
+      {/*{id !== "new" && (*/}
+      {/*  <DropdownMenu open={isMenuOpen} onOpenChange={handleMenu}>*/}
+      {/*    <DropdownMenuTrigger asChild>*/}
+      {/*      <div onClick={handleMenu}>*/}
+      {/*        <Ellipsis*/}
+      {/*          className={cn(*/}
+      {/*            "group-hover:block text-gray-400 hover:text-white",*/}
+      {/*            isMenuOpen ? "block text-white" : "md-hidden text-gray-400",*/}
+      {/*          )}*/}
+      {/*        />*/}
+      {/*      </div>*/}
+      {/*    </DropdownMenuTrigger>*/}
+      {/*    <DropdownMenuContent>*/}
+      {/*      <DropdownMenuItem>*/}
+      {/*        <Pencil className="w-4 h-4 " />*/}
+      {/*        제목 수정하기*/}
+      {/*      </DropdownMenuItem>*/}
+      {/*      <DropdownMenuItem>*/}
+      {/*        <Trash className="w-4 h-4 " />*/}
+      {/*        대화 삭제하기*/}
+      {/*      </DropdownMenuItem>*/}
+      {/*    </DropdownMenuContent>*/}
+      {/*  </DropdownMenu>*/}
+      {/*)}*/}
     </Link>
   );
 };
