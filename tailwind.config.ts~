@@ -58,7 +58,7 @@ const config: Config = {
       },
     },
     fontFamily: {
-      aggro: ["var(--font-aggro)", "sans-serif"],
+      aggro: ["var(--font-Aggro)", "sans-serif"],
     },
   },
   plugins: [require("tailwindcss-animate")],
