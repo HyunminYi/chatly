@@ -3,7 +3,7 @@
 import Empty from "@/app/components/chat/Empty";
 import Message from "@/app/components/chat/Message";
 import AutoResizingTextarea from "@/app/components/chat/AutoResizingTextarea";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/app/components/ui/button";
 import { ArrowUp } from "lucide-react";
 import { useChat } from "@ai-sdk/react";
@@ -24,6 +24,10 @@ const Chat = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
+  }, [messages]);
+
+  useEffect(() => {
+    console.log(messages);
   }, [messages]);
   return (
     <div className="flex flex-col w-[80%] h-full mx-auto">

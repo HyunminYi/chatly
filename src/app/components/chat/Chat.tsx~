@@ -20,11 +20,15 @@ const Chat = () => {
 
   const scrollRef = useRef<HTMLDivElement>(null);
   // 스크롤바텀 로직
-  // useEffect(() => {
-  //   if (scrollRef.current) {
-  //     scrollRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // }, [messages]);
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    console.log(messages);
+  }, [messages]);
   return (
     <div className="flex flex-col w-[80%] h-full mx-auto">
       <div className="flex-1">
