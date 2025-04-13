@@ -1,4 +1,5 @@
 import { create } from "zustand/react";
+import { tModelName } from "@/app/components/chat/ModelSelect";
 
 type State = {
   model: string;
@@ -8,7 +9,7 @@ type Action = {
 };
 
 const useModelStore = create<State & Action>((set) => ({
-  model: "claude3.5-haiku",
+  model: "",
   updateModel: (model) => set(() => ({ model })),
 }));
 

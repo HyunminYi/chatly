@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/app/components/ui/button";
 import { ArrowUp } from "lucide-react";
 import { useChat } from "@ai-sdk/react";
+import { useModelStore } from "@/app/store/model";
 const MESSAGE_DUMMY = [
   { id: "1", content: "더미데이터1", role: "user" },
   { id: "2", content: "더미데이터2", role: "assistant" },
@@ -17,7 +18,7 @@ const MESSAGE_DUMMY = [
 ];
 const Chat = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-
+  const model = useModelStore((state) => state.model);
   const scrollRef = useRef<HTMLDivElement>(null);
   // 스크롤바텀 로직
   useEffect(() => {
@@ -47,10 +48,10 @@ const Chat = () => {
         )}
       </div>
       <div className="pb-5 sticky bottom-0 bg-white">
-        {/* TODO react hook form install */}
+        {/* TODO react hook form install */}W
         <form
-          className="flex items-center justify-center  w-full"
-          onSubmit={handleSubmit}
+          className="flex items-center justify-between w-full"
+          onSubmit={(e) => handleSubmit(e,{data:model})}
         >
           <AutoResizingTextarea value={input} onChange={handleInputChange} />
           <Button
