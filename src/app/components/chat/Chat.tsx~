@@ -31,7 +31,7 @@ const Chat = () => {
         const conversation = await createConversation(input);
         //   messages 추가
         await addMessages(conversation.id, input, message.content);
-        router.push(`${CHAT_ROUTES.CONVERSATIONS}`);
+        router.push(`${CHAT_ROUTES.CONVERSATIONS}/${conversation.id}`);
       } else {
         //    기존 대화페이지
       }

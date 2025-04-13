@@ -67,7 +67,7 @@ const Chat = () => {
         )}
       </div>
       <div className="pb-5 sticky bottom-0 bg-white">
-        {/* TODO react hook form install */}W
+        {/* TODO react hook form install */}
         <form
           className="flex items-center justify-between w-full"
           onSubmit={(e) => handleSubmit(e, { data: model })}

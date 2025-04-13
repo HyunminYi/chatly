@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/app/components/ui/select";
 import { useModelStore } from "@/app/store/model";
+import { useEffect } from "react";
 
 export const MODELS = [
   "Claude3.5 Haiku",
@@ -33,10 +34,12 @@ const ModelSelect = () => {
   const currentModel = useModelStore((state) => state.model);
   const updateModel = useModelStore((state) => state.updateModel);
   const handleChange = (selectModel: tModelName) => {
-    const model  = modelMap[selectModel];
-    updateModel(model);
+    // const model = modelMap[selectModel];
+    // updateModel(model);
+    updateModel(selectModel);
     console.log(selectModel, model);
   };
+  useEffect(() => {}, [updateModel]);
 
   return (
     <>
