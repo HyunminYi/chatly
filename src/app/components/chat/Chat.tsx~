@@ -8,6 +8,9 @@ import { Button } from "@/app/components/ui/button";
 import { ArrowUp } from "lucide-react";
 import { useChat } from "@ai-sdk/react";
 import { useModelStore } from "@/app/store/model";
+import { useParams, useRouter } from "next/navigation";
+import { addMessages, createConversation } from "@/app/actions/conversation";
+import { CHAT_ROUTES } from "@/app/constants/routes";
 const MESSAGE_DUMMY = [
   { id: "1", content: "더미데이터1", role: "user" },
   { id: "2", content: "더미데이터2", role: "assistant" },
@@ -17,7 +20,23 @@ const MESSAGE_DUMMY = [
   { id: "6", content: "더미데이터2", role: "assistant" },
 ];
 const Chat = () => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const router = useRouter();
+  const params = useParams<{ conversationId: string }>();
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    // 응답이 끝난 시점 (대화기록)
+    onFinish: async (message) => {
+      //   param 구분 새 대화 / 기존 대화
+      if (!params.conversationId) {
+        //   새 대화 생성
+        const conversation = await createConversation(input);
+        //   messages 추가
+        await addMessages(conversation.id, input, message.content);
+        router.push(`${CHAT_ROUTES.CONVERSATIONS}`);
+      } else {
+        //    기존 대화페이지
+      }
+    },
+  });
   const model = useModelStore((state) => state.model);
   const scrollRef = useRef<HTMLDivElement>(null);
   // 스크롤바텀 로직
@@ -51,7 +70,7 @@ const Chat = () => {
         {/* TODO react hook form install */}W
         <form
           className="flex items-center justify-between w-full"
-          onSubmit={(e) => handleSubmit(e,{data:model})}
+          onSubmit={(e) => handleSubmit(e, { data: model })}
         >
           <AutoResizingTextarea value={input} onChange={handleInputChange} />
           <Button
