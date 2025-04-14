@@ -45,7 +45,7 @@ const LoginForm = () => {
       "
       >
         * 테스트용 아이디
-        <strong> admin@a.a </strong> / 패스워드
+        <strong> admin </strong> / 패스워드
         <strong> 1111 </strong>
         입니다.
       </p>

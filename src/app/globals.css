@@ -72,11 +72,12 @@
   * {
     @apply border-border;
     @apply font-aggro;
-    @apply tracking-tighter;
+    /*@apply tracking-tight;*/
     @apply antialiased;
     @apply leading-relaxed;
+    /*@apply leading-loose;*/
     /*font smooths*/
-    p, span, h1, h2, h3, h4, h5, h6, strong, em {
+    p, span, h1, h2, h3, h4, h5, h6, strong, em,input::placeholder,input,textarea,select, button {
       transform: rotate(0.04deg);
       }
   }
