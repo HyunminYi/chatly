@@ -1,18 +1,22 @@
 import { create } from "zustand/react";
-import { tModelName } from "@/app/components/chat/ModelSelect";
+import { tModelId, tModelName } from "@/app/types/model";
 
 type State = {
-  model: string;
-  modelId: string;
+  model: tModelName | null;
+  modelId: tModelId | null;
 };
 type Action = {
-  updateModel: (model: State, modelId: State) => void;
+  updateModel: (payload: State) => void;
 };
 
 const useModelStore = create<State & Action>((set) => ({
-  model: "Claude3.5 Haiku",
-  modelId: "claude-3-5-haiku-20241022",
-  updateModel: (model, modelId) => set(() => ({ model, modelId })),
+  model: null,
+  modelId: null,
+  updateModel: ({ model, modelId }) =>
+    set(() => ({
+      model,
+      modelId,
+    })),
 }));
 
 export { useModelStore };

@@ -9,22 +9,24 @@ import {
 } from "@/app/components/ui/select";
 import { useModelStore } from "@/app/store/model";
 import { useEffect } from "react";
+import { ValueOf } from "next/constants";
+import { modelMap, MODELS, tModelId, tModelName } from "@/app/types/model";
 
-export const MODELS = [
-  "Claude3.5 Haiku",
-  "Claude3.5 Sonnet",
-  "Claude3 Sonnet",
-  "Claude3 Haiku",
-] as const;
-
-export type tModelName = (typeof MODELS)[number];
-
-const modelMap: Record<tModelName, string> = {
-  "Claude3.5 Haiku": "claude-3-5-haiku-20241022",
-  "Claude3.5 Sonnet": "claude-3-5-sonnet-20241022",
-  "Claude3 Haiku": "claude-3-haiku-20240307",
-  "Claude3 Sonnet": "claude-3-sonnet-20240229",
-};
+// export const MODELS = [
+//   "Claude3.5 Haiku",
+//   "Claude3.5 Sonnet",
+//   "Claude3 Sonnet",
+//   "Claude3 Haiku",
+// ] as const;
+//
+// export type tModelName = (typeof MODELS)[number];
+//
+// const modelMap: Record<tModelName, string> = {
+//   "Claude3.5 Haiku": "claude-3-5-haiku-20241022",
+//   "Claude3.5 Sonnet": "claude-3-5-sonnet-20241022",
+//   "Claude3 Haiku": "claude-3-haiku-20240307",
+//   "Claude3 Sonnet": "claude-3-sonnet-20240229",
+// };
 
 const ModelSelect = () => {
   // const { model: currentModel, updateModel } = useModelStore((state) => ({
@@ -34,16 +36,17 @@ const ModelSelect = () => {
   const currentModel = useModelStore((state) => state.model);
   const updateModel = useModelStore((state) => state.updateModel);
   const handleChange = (selectModel: tModelName) => {
-    // const model = modelMap[selectModel];
-    // updateModel(model);
-    updateModel(selectModel);
-    // console.log(selectModel, model);
+    const model = selectModel;
+    const modelId = modelMap[model];
+    updateModel({
+      model,
+      modelId,
+    });
   };
-  useEffect(() => {}, [updateModel]);
 
   return (
     <>
-      <Select value={currentModel} onValueChange={handleChange}>
+      <Select value={currentModel ?? ""} onValueChange={handleChange}>
         <SelectTrigger className="w-[180px] border-none text-sm focus:ring-transparent">
           <SelectValue placeholder="모델 선택" />
         </SelectTrigger>
