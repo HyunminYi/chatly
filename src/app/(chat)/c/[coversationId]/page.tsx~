@@ -11,7 +11,7 @@ const Page = async ({ params: { conversationId } }: Props) => {
 
   return (
     <>
-      <Chat initialMessages={messages} />
+      <Chat initialMessages={messages}/>
     </>
   );
 };
