@@ -3,8 +3,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet";
 import Sidebar from "@/app/components/chat/Sidebar";
 import { Menu } from "lucide-react";
 import { useSheetStore } from "@/app/store/sheet";
+import { IChildren } from "@/app/types/common";
 
-const MobileMenu = () => {
+const MobileMenu = ({ children }: IChildren) => {
   // const { open, setOpen } = useSheetStore((state) => ({
   //   open: state.open,
   //   setOpen: state.setOpen,
@@ -13,12 +14,12 @@ const MobileMenu = () => {
   const setOpen = useSheetStore((state) => state.setOpen);
   return (
     <div className="md:hidden">
-      <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger>
+      <Sheet open={open} onOpenChange={(open) => setOpen(open)}>
+        <SheetTrigger asChild>
           <Menu />
         </SheetTrigger>
         <SheetContent side="left" className="p-0">
-          <Sidebar />
+          {children}
         </SheetContent>
       </Sheet>
     </div>

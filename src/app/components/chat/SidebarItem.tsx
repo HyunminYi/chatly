@@ -21,6 +21,7 @@ type Props = {
     icon: ReactNode;
     label: string;
   };
+  key: string;
 };
 const SidebarItem = ({ item }: Props) => {
   const { id, href, icon, label } = item;

@@ -38,6 +38,7 @@ const ModelSelect = () => {
   const handleChange = (selectModel: tModelName) => {
     const model = selectModel;
     const modelId = modelMap[model];
+    // console.log(model, modelId);
     updateModel({
       model,
       modelId,

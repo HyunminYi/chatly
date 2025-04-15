@@ -7,7 +7,7 @@ import { LoginSchema } from "@/app/schemas/auth";
 import { z } from "zod";
 
 export const getUserByEmail = async (
-  email: z.infer<typeof LoginSchema>["email"],
+  email: z.infer<typeof LoginSchema>,
 ): Promise<User | null> => {
   try {
     const existingUser = await db.query.user.findFirst({

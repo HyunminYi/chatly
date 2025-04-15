@@ -36,8 +36,9 @@ const ModelSelect = () => {
   const currentModel = useModelStore((state) => state.model);
   const updateModel = useModelStore((state) => state.updateModel);
   const handleChange = (selectModel: tModelName) => {
-    const model = selectModel
+    const model = selectModel;
     const modelId = modelMap[model];
+    console.log(model, modelId);
     updateModel({
       model,
       modelId,
