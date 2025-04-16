@@ -50,7 +50,7 @@ const Chat = ({ initialMessages }: Props) => {
     if (initialMessages) {
       setMessages(initialMessages);
     }
-  }, []);
+  }, [initialMessages, setMessages]);
   // 스크롤바텀 로직
   useEffect(() => {
     if (scrollRef.current) {

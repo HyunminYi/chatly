@@ -39,7 +39,7 @@ const Chat = ({ initialMessages }: Props) => {
           router.push(`${CHAT_ROUTES.CONVERSATIONS}/${conversation.id}`);
         } else {
           //    기존 대화페이지
-          await addMessages(params.conversationId,input, message.content);
+          await addMessages(params.conversationId, input, message.content);
         }
       },
     });
@@ -50,7 +50,7 @@ const Chat = ({ initialMessages }: Props) => {
     if (initialMessages) {
       setMessages(initialMessages);
     }
-  }, []);
+  }, [initialMessages,setMessages]);
   // 스크롤바텀 로직
   useEffect(() => {
     if (scrollRef.current) {
