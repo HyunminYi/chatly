@@ -7,7 +7,9 @@ type Props = {
   };
 };
 const Page = async ({ params: { conversationId } }: Props) => {
+  console.log(params.conversationId, "params");
   const messages = await getMessagesByConversation(conversationId);
+  console.log(messages);
 
   return (
     <>

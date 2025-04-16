@@ -21,7 +21,7 @@ const Sidebar = async () => {
       id: conversation.id,
       label: conversation.name || "",
       icon: <MessageSquare />,
-      href: `${CHAT_ROUTES.CONVERSATIONS}/${conversation.id}}`,
+      href: `${CHAT_ROUTES.CONVERSATIONS}/${conversation.id}`,
     })),
   ];
   return (

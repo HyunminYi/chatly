@@ -19,7 +19,7 @@ export const addMessages = async (
   await db.insert(message).values({
     conversationId,
     content: aiContent,
-    role: "ai",
+    role: "assistant",
   });
   revalidatePath(`${CHAT_ROUTES.CONVERSATIONS}/${conversationId}`);
 };

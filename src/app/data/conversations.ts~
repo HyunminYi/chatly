@@ -4,11 +4,12 @@ import { conversation } from "../../../db/schema";
 import { Message } from "ai";
 
 export const getMessagesByConversation = async (id: string) => {
+  console.log(id);
   const response = await db.query.conversation.findFirst({
     where: eq(conversation.id, id),
     with: {
       messages: {
-        orderBy: (message, { asc }) => [desc(message.createdAt)],
+        orderBy: (message, { asc }) => [asc(message.createdAt)],
       },
     },
   });

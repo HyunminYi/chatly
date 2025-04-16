@@ -11,6 +11,7 @@ import Submit from "@/app/components/auth/Submit";
 import { TLoginFormError } from "@/app/types/form";
 import { LoginSchema } from "@/app/schemas/auth";
 import { login } from "@/app/actions/login";
+import { Card } from "@/app/components/ui/card";
 
 const LoginForm = () => {
   const [error, action] = useFormState(login, null);
@@ -40,15 +41,17 @@ const LoginForm = () => {
         href: "/signup",
       }}
     >
-      <p
-        className="text-blue-600 text-xs font-light
+      <Card className="p-4 shadow-none bg-slate-200/80 border-blue-600 opacity-70 scale-90">
+        <p
+          className="text-blue-600 text-xs font-light
       "
-      >
-        * 테스트용 아이디
-        <strong> admin </strong> / 패스워드
-        <strong> 1111 </strong>
-        입니다.
-      </p>
+        >
+          * 테스트용 아이디
+          <strong> admin@admin.com </strong> <br />* 패스워드
+          <strong> 12345678Aa </strong>
+          입니다.
+        </p>
+      </Card>
       <form action={action} className="space-y-6">
         {/*이메일*/}
         <div className="space-y-1">

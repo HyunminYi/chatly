@@ -5,13 +5,12 @@ import SidebarItem from "@/app/components/chat/SidebarItem";
 import LogoutButton from "@/app/components/chat/LogoutButton";
 import { getConversationsByUser } from "@/app/data/user";
 
-const NEW_SIDEBAR_ITEM =
-  {
-    id: "new",
-    label: "새로운 대화",
-    icon: <Plus />,
-    href: BASE_URL,
-  }
+const NEW_SIDEBAR_ITEM = {
+  id: "new",
+  label: "새로운 대화",
+  icon: <Plus />,
+  href: BASE_URL,
+};
 
 const Sidebar = async () => {
   const conversations = await getConversationsByUser();

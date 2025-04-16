@@ -7,11 +7,13 @@ type Props = {
   };
 };
 const Page = async ({ params: { conversationId } }: Props) => {
+  console.log(conversationId, "params");
   const messages = await getMessagesByConversation(conversationId);
+  console.log(messages);
 
   return (
     <>
-      <Chat initialMessages={messages}/>
+      <Chat initialMessages={messages} />
     </>
   );
 };

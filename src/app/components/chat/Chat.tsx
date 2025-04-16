@@ -44,6 +44,7 @@ const Chat = ({ initialMessages }: Props) => {
       },
     });
   const model = useModelStore((state) => state.model);
+
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -58,13 +59,11 @@ const Chat = ({ initialMessages }: Props) => {
     }
   }, [messages]);
 
-  useEffect(() => {
-    console.log(messages);
-  }, [messages]);
+  useEffect(() => {}, [messages]);
   return (
     <div className="flex flex-col w-[80%] h-full mx-auto">
       <div className="flex-1">
-        {messages.length === 0 ? (
+        {!params.conversationId && messages.length === 0 ? (
           <Empty />
         ) : (
           <>
@@ -82,7 +81,15 @@ const Chat = ({ initialMessages }: Props) => {
         {/* TODO react hook form install */}
         <form
           className="flex items-center justify-between w-full"
-          onSubmit={(e) => handleSubmit(e, { data: model })}
+          onSubmit={(e) => {
+            // TODO toast 작업
+            if (!model) {
+              e.preventDefault();
+              alert("모델을 선택해줘");
+              return;
+            }
+            handleSubmit(e, { data: model });
+          }}
         >
           <AutoResizingTextarea value={input} onChange={handleInputChange} />
           <Button
