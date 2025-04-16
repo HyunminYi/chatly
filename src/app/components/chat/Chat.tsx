@@ -11,6 +11,7 @@ import { useModelStore } from "@/app/store/model";
 import { useParams, useRouter } from "next/navigation";
 import { addMessages, createConversation } from "@/app/actions/conversation";
 import { CHAT_ROUTES } from "@/app/constants/routes";
+import { useUserStore } from "@/app/store/user";
 
 const MESSAGE_DUMMY = [
   { id: "1", content: "더미데이터1", role: "user" },
@@ -26,6 +27,7 @@ type Props = {
 const Chat = ({ initialMessages }: Props) => {
   const router = useRouter();
   const params = useParams<{ conversationId: string }>();
+  const user = useUserStore((state) => state.user);
   const { messages, input, handleInputChange, handleSubmit, setMessages } =
     useChat({
       // 응답이 끝난 시점 (대화기록)
@@ -70,6 +72,7 @@ const Chat = ({ initialMessages }: Props) => {
             {messages.map((message) => (
               <Message
                 key={message.id}
+                name={user.name}
                 content={message.content}
                 role={message.role}
               />

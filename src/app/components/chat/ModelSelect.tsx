@@ -11,6 +11,8 @@ import { useModelStore } from "@/app/store/model";
 import { useEffect } from "react";
 import { ValueOf } from "next/constants";
 import { modelMap, MODELS, tModelId, tModelName } from "@/app/types/model";
+import { useToggleStore } from "@/app/store/toggle";
+import SelectAlert from "@/app/components/chat/SelectAlert";
 
 // export const MODELS = [
 //   "Claude3.5 Haiku",
@@ -35,7 +37,11 @@ const ModelSelect = () => {
   // }));
   const currentModel = useModelStore((state) => state.model);
   const updateModel = useModelStore((state) => state.updateModel);
+  const updateToggle = useToggleStore((state) => state.updateToggle);
+  const toggle = useToggleStore((state) => state.toggle);
+
   const handleChange = (selectModel: tModelName) => {
+    // updateToggle(true);
     const model = selectModel;
     const modelId = modelMap[model];
     // console.log(model, modelId);
@@ -46,8 +52,12 @@ const ModelSelect = () => {
   };
 
   return (
-    <>
-      <Select value={currentModel ?? ""} onValueChange={handleChange}>
+    <div className="flex items-center gap-2">
+      <Select
+        value={currentModel ?? ""}
+        onValueChange={handleChange}
+        onOpenChange={() => updateToggle(true)}
+      >
         <SelectTrigger className="w-[180px] border-none text-sm focus:ring-transparent">
           <SelectValue placeholder="모델 선택" />
         </SelectTrigger>
@@ -66,7 +76,8 @@ const ModelSelect = () => {
           </SelectGroup>
         </SelectContent>
       </Select>
-    </>
+      {!toggle ? <SelectAlert /> : null}
+    </div>
   );
 };
 

@@ -6,6 +6,21 @@
   .text-balance {
     text-wrap: balance;
   }
+  @keyframes left-right {
+    0% {
+      transform: translateX(0);
+      }
+    50% {
+      transform: translateX(10px);
+      }
+    100% {
+      transform: translateX(0);
+      }
+    }
+  
+  .bounce-box {
+    animation: left-right 2s infinite ease-in-out;
+    }
 }
 
 
@@ -77,7 +92,7 @@
     @apply leading-relaxed;
     /*@apply leading-loose;*/
     /*font smooths*/
-    p, span, h1, h2, h3, h4, h5, h6, strong, em,input::placeholder,input,textarea,select, button, {
+    p, span, h1, h2, h3, h4, h5, h6, strong, em,input::placeholder,input,textarea,select, button {
       transform: rotate(0.04deg);
       }
   }

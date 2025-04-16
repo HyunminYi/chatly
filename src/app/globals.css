@@ -6,6 +6,21 @@
   .text-balance {
     text-wrap: balance;
   }
+  @keyframes left-right {
+    0% {
+      transform: translateX(0);
+      }
+    50% {
+      transform: translateX(10px);
+      }
+    100% {
+      transform: translateX(0);
+      }
+    }
+  
+  .bounce-box {
+    animation: left-right 1.5s infinite ease-in-out;
+    }
 }
 
 

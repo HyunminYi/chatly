@@ -1,6 +1,8 @@
 import MobileMenu from "@/app/components/chat/MobileMenu";
 import ModelSelect from "@/app/components/chat/ModelSelect";
-import Sidebar from '@/app/components/chat/Sidebar'
+import Sidebar from "@/app/components/chat/Sidebar";
+import SelectAlert from "@/app/components/chat/SelectAlert";
+import { useToggleStore } from "@/app/store/toggle";
 
 const Header = () => {
   return (
@@ -8,7 +10,10 @@ const Header = () => {
       {/*  모바일 메뉴 영역*/}
       <MobileMenu children={<Sidebar />} />
       {/*선택영역*/}
-      <ModelSelect />
+      <div className="flex items-center gap-2">
+        <ModelSelect />
+        {/*{toggle ? <SelectAlert /> : null}*/}
+      </div>
     </header>
   );
 };
