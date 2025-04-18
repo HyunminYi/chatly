@@ -2,7 +2,7 @@
 import { useFormState } from "react-dom";
 import useFormValidate from "@/app/hooks/useFormValidate";
 import { ChangeEvent, useEffect } from "react";
-import { toast } from "@/app/hooks/use-toast";
+import { toast, useToast } from "@/app/hooks/use-toast";
 import FormCard from "@/app/components/auth/FormCard";
 import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
@@ -41,7 +41,7 @@ const LoginForm = () => {
         href: "/signup",
       }}
     >
-      <Card className="p-4 shadow-none bg-slate-200/80 border-blue-600 opacity-70 scale-90">
+      <Card className="p-4 shadow-none bg-slate-200/40 border-blue-600 opacity-70 scale-90">
         <p
           className="text-blue-600 text-xs font-light
       "
