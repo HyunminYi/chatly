@@ -5,6 +5,8 @@ import React, {
   useEffect,
   useRef,
   useState,
+  KeyboardEvent,
+  MouseEvent,
 } from "react";
 import Link from "next/link";
 import {
@@ -14,11 +16,20 @@ import {
   DropdownMenuTrigger,
 } from "@/app/components/ui/dropdown-menu";
 import { Ellipsis, Pencil, Trash } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSheetStore } from "@/app/store/sheet";
-import { updateConversation } from "@/app/actions/conversation";
+import {
+  deleteConversation,
+  updateConversation,
+} from "@/app/actions/conversation";
 import { toast } from "@/app/hooks/use-toast";
+import { Simulate } from "react-dom/test-utils";
+import click = Simulate.click;
+import { useModalStore } from "@/app/store/modal";
+import { undefined } from "zod";
+import ModalFooter from "@/app/components/modal/ModalFooter";
+import { BASE_URL } from "@/app/constants/routes";
 
 type Props = {
   item: {
@@ -32,9 +43,14 @@ type Props = {
 const SidebarItem = ({ item }: Props) => {
   const { id, href, icon, label } = item;
   const pathname = usePathname();
+  const params = useParams<{ conversationId: string }>();
+  const router = useRouter();
+
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [value, setValue] = useState(label);
+  const openModal = useModalStore((state) => state.openModal);
+  const closeModal = useModalStore((state) => state.closeModal);
   const setOpen = useSheetStore((state) => state.setOpen);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -65,7 +81,32 @@ const SidebarItem = ({ item }: Props) => {
       await handleBlur();
     }
   };
-  const clickEdit = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleDelete = async () => {
+    try {
+      await deleteConversation(id);
+      toast({
+        title: "삭제 완료",
+      });
+      if (params.conversationId === id) router.push(BASE_URL);
+      closeModal();
+    } catch (e) {
+      console.error(e);
+      toast({
+        title: "문제가 발생했습니다.",
+        variant: "destructive",
+      });
+    }
+  };
+  const clickDelete = (e: MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    //   모달 로직
+    openModal({
+      title: "정말 삭제하시겠습니까?",
+      description: "삭제 후 데이터는 복구하기 어렵습니다. ",
+      footer: <ModalFooter onCancel={closeModal} onConfirm={handleDelete} />,
+    });
+  };
+  const clickEdit = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsEditMode(true);
     setMenuOpen(false);
@@ -124,7 +165,7 @@ const SidebarItem = ({ item }: Props) => {
               <Pencil className="w-4 h-4 bottom-0.5 relative " />
               제목 수정하기
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => clickDelete(e)}>
               <Trash className="w-4 h-4 bottom-0.5 relative" />
               대화 삭제하기
             </DropdownMenuItem>

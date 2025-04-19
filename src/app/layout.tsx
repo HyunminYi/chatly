@@ -4,6 +4,7 @@ import { Toaster } from "@/app/components/ui/toaster";
 import { ReactNode } from "react";
 
 import { aggro } from "@/app/styles/font";
+import Modal from "@/app/components/modal/Modal";
 
 export const metadata: Metadata = {
   title: "이현민 Chatly",
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={aggro.variable}>
       <body>
+        <Modal />
         {children}
         <Toaster />
       </body>

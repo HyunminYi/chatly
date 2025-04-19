@@ -47,3 +47,8 @@ export const updateConversation = async (id: string, name: string) => {
   revalidatePath(BASE_URL); // 해당 경로 재검증하여 업데이트됐다면 캐시를 리프레시함
   return result[0];
 };
+
+export const deleteConversation = async (id: string) => {
+  await db.delete(conversation).where(eq(conversation.id, id));
+  revalidatePath(BASE_URL);
+};
