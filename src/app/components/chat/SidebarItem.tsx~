@@ -101,7 +101,6 @@ const SidebarItem = ({ item }: Props) => {
   };
   const clickDelete = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    setMenuOpen(false);
     //   모달 로직
     openModal({
       title: "정말 삭제하시겠습니까?",
