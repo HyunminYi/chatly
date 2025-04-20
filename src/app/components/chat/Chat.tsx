@@ -3,48 +3,37 @@
 import Empty from "@/app/components/chat/Empty";
 import Message from "@/app/components/chat/Message";
 import AutoResizingTextarea from "@/app/components/chat/AutoResizingTextarea";
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { Button } from "@/app/components/ui/button";
 import { ArrowUp } from "lucide-react";
-import { useChat, Message as TMessage } from "@ai-sdk/react";
+import { useChat, Message as IMessage } from "@ai-sdk/react";
 import { useModelStore } from "@/app/store/model";
 import { useParams, useRouter } from "next/navigation";
 import { addMessages, createConversation } from "@/app/actions/conversation";
 import { CHAT_ROUTES } from "@/app/constants/routes";
 import { useUserStore } from "@/app/store/user";
+import useChatHandler from "@/app/hooks/chat/useChatHandler";
 
-const MESSAGE_DUMMY = [
-  { id: "1", content: "더미데이터1", role: "user" },
-  { id: "2", content: "더미데이터2", role: "assistant" },
-  { id: "3", content: "더미데이터1", role: "user" },
-  { id: "4", content: "더미데이터2", role: "assistant" },
-  { id: "5", content: "더미데이터1", role: "user" },
-  { id: "6", content: "더미데이터2", role: "assistant" },
-];
-type Props = {
-  initialMessages?: TMessage[];
-};
-const Chat = ({ initialMessages }: Props) => {
-  const router = useRouter();
-  const params = useParams<{ conversationId: string }>();
-  const user = useUserStore((state) => state.user);
-  const { messages, input, handleInputChange, handleSubmit, setMessages } =
-    useChat({
-      // 응답이 끝난 시점 (대화기록)
-      onFinish: async (message) => {
-        //   param 구분 새 대화 / 기존 대화
-        if (!params.conversationId) {
-          //   새 대화 생성
-          const conversation = await createConversation(input);
-          //   messages 추가
-          await addMessages(conversation.id, input, message.content);
-          router.push(`${CHAT_ROUTES.CONVERSATIONS}/${conversation.id}`);
-        } else {
-          //    기존 대화페이지
-          await addMessages(params.conversationId, input, message.content);
-        }
-      },
-    });
+// type Props = {
+//   initialMessages?: IMessage[];
+// };
+// REFACTOR : 인터랙션 / UI 분리
+
+interface IProps {
+  initialMessages: IMessage[];
+}
+//
+
+const Chat = memo(({ initialMessages }: IProps) => {
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    setMessages,
+    params,
+    user,
+  } = useChatHandler();
   const model = useModelStore((state) => state.model);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -107,6 +96,6 @@ const Chat = ({ initialMessages }: Props) => {
       <div ref={scrollRef}></div>
     </div>
   );
-};
+});
 
 export default Chat;
