@@ -16,6 +16,8 @@ export const login = async (_: any, formData: FormData) => {
     return { errorMessage: "잘못된 입력값이 있습니다." };
   }
   // 2. user check
+  // REFACTOR : try/catch 대신 에러 throw 방식으로 리팩토링
+  // https://nextjs-ko.org/docs/app/building-your-application/routing/error-handling
   const { email, pw } = validateFields.data;
   try {
     //   존재하는 사용자인지 체크
@@ -27,6 +29,7 @@ export const login = async (_: any, formData: FormData) => {
     }
     const { id, name, password: userPassword } = existingUser;
     const passwordMatch = await bcrypt.compare(pw, userPassword);
+
     if (!passwordMatch) {
       return { errorMessage: "비밀번호가 일치하지 않습니다." };
     }
