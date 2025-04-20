@@ -1,9 +1,21 @@
-export type TSignUpFormError = {
+type TSignUpFormError = {
   name?: string[];
   email?: string[];
   pw?: string[];
 };
-export type TLoginFormError = {
+
+type TLoginFormError = {
   email?: string[];
   pw?: string[];
 };
+
+export interface ILoginFormError {
+  email?: string[];
+  pw?: string[];
+}
+
+export interface ISignUpFormError {
+  name?: string[];
+  email?: string[];
+  pw?: string[];
+}
