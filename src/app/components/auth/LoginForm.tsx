@@ -22,7 +22,7 @@ const LoginForm = () => {
   // const [error, action] = useFormState(login, null);
   const [error, action, pending] = useActionState(login, initialError);
   // zod schema validation custom hook
-  const { errors, validateField } =
+  const { errors, validateField, hasErrors, resetErrors } =
     useFormValidate<ILoginFormError>(LoginSchema);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -33,17 +33,22 @@ const LoginForm = () => {
   useEffect(() => {
     if (error?.errorMessage) {
       toast({
-        title: "회원가입 실패",
+        title: "로그인 실패",
         description: error.errorMessage,
         variant: "destructive",
       });
     }
   }, [error]);
+
+  useEffect(() => {
+    return resetErrors();
+  }, [resetErrors]);
+
   return (
     <FormCard
-      title="로그인"
+      title="CHATLY 로그인"
       footer={{
-        label: "아직 계정이 없으신가요.",
+        label: "아직 계정이 없으신가요? 회원가입 하기",
         href: "/signup",
       }}
     >
