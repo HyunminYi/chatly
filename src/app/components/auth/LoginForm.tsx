@@ -1,5 +1,6 @@
 "use client";
 import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import useFormValidate from "@/app/hooks/useFormValidate";
 import { ChangeEvent, useEffect } from "react";
 import { toast } from "@/app/hooks/use-toast";
@@ -13,8 +14,12 @@ import { LoginSchema } from "@/app/schemas/auth";
 import { login } from "@/app/actions/login";
 import { Card } from "@/app/components/ui/card";
 
+const initialState = {
+  errorMessage: "",
+};
 const LoginForm = () => {
-  const [error, action] = useFormState(login, null);
+  // const [error, action] = useFormState(login, null);
+  const [error, action, pending] = useActionState(login, initialState);
   // zod schema validation custom hook
   const { errors, validateField } =
     useFormValidate<TLoginFormError>(LoginSchema);
@@ -79,7 +84,9 @@ const LoginForm = () => {
           />
           {errors?.pw && <FormMessage>{errors?.pw[0]}</FormMessage>}
         </div>
-        <Submit className="space-y-1 w-full">로그인</Submit>
+        <Submit className="space-y-1 w-full" disabled={pending}>
+          로그인
+        </Submit>
       </form>
     </FormCard>
   );
