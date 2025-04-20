@@ -9,20 +9,21 @@ import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import FormMessage from "@/app/components/auth/FormMessage";
 import Submit from "@/app/components/auth/Submit";
-import { TLoginFormError } from "@/app/types/form";
 import { LoginSchema } from "@/app/schemas/auth";
 import { login } from "@/app/actions/login";
 import { Card } from "@/app/components/ui/card";
+import { ILoginFormError } from "@/app/types/form";
 
-const initialState = {
+const initialError = {
   errorMessage: "",
-};
+} as const;
+
 const LoginForm = () => {
   // const [error, action] = useFormState(login, null);
-  const [error, action, pending] = useActionState(login, initialState);
+  const [error, action, pending] = useActionState(login, initialError);
   // zod schema validation custom hook
   const { errors, validateField } =
-    useFormValidate<TLoginFormError>(LoginSchema);
+    useFormValidate<ILoginFormError>(LoginSchema);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
