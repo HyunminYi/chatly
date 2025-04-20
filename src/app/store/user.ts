@@ -1,19 +1,30 @@
 import { create } from "zustand/react";
 import { User } from "@/app/types/db";
 
-type State = {
-  user: Partial<User>;
-};
-type Action = {
-  updateUser: (payload: State["user"]) => void;
-};
+// type State = {
+//   user: Partial<User>;
+// };
+// type Action = {
+//   updateUser: (payload: State["user"]) => void;
+// };
 
-const useUserStore = create<State & Action>((set) => ({
+interface IState {
+  user: Partial<User>;
+}
+interface IAction {
+  updateUser: (payload: IState["user"]) => void;
+  clearUser: () => void;
+}
+
+const initialValue: IState = {
   user: {
     id: "",
     name: "",
   },
-  updateUser: (user) => set(() => ({ user })),
+};
+const useUserStore = create<IState & IAction>((set) => ({
+  ...initialValue,
+  updateUser: (payload) => set({ user: payload }),
+  clearUser: () => set({ user: initialValue.user }),
 }));
-
 export { useUserStore };
