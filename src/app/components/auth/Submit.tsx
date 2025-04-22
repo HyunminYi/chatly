@@ -1,10 +1,10 @@
+// -# 컴포넌트 역할 분리
 import { Button, ButtonProps } from "@/app/components/ui/button";
-import { useFormStatus } from "react-dom";
 
 const Submit = ({ children, ...props }: ButtonProps) => {
-  const { pending } = useFormStatus();
+  // const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} {...props}>
+    <Button type="submit" {...props}>
       {children}
     </Button>
   );
