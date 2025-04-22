@@ -7,9 +7,7 @@ import { useToggleStore } from "@/app/store/toggle";
 const Header = () => {
   return (
     <header className="flex items-center p-2 sticky top-0 bg-white z-10">
-      {/*  모바일 메뉴 영역*/}
       <MobileMenu children={<Sidebar />} />
-      {/*선택영역*/}
       <div className="flex items-center gap-2">
         <ModelSelect />
       </div>

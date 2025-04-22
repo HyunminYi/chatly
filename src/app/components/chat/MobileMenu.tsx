@@ -3,7 +3,7 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { IChildren } from "@/app/types/common";
-import useModal from "@/app/hooks/modal/useModalStore";
+import useModal from "@/app/hooks/modal/useModal";
 
 const MobileMenu = ({ children }: IChildren) => {
   // const { open, setOpen } = useSheetStore((state) => ({

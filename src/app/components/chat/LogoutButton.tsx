@@ -7,7 +7,6 @@ import { useUserStore } from "@/app/store/user";
 const LogoutButton = () => {
   const clearUser = useUserStore((state) => state.clearUser);
 
-  // user상태정보 클리어함수
   useEffect(() => {
     return () => {
       clearUser();

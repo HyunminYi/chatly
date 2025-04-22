@@ -11,7 +11,7 @@ import {
 import { useModelStore } from "@/app/store/model";
 import { modelMap, MODELS, tModelId, tModelName } from "@/app/types/model";
 import SelectAlert from "@/app/components/chat/SelectAlert";
-import useModal from "@/app/hooks/modal/useModalStore";
+import useModal from "@/app/hooks/modal/useModal";
 
 const ModelSelect = () => {
   const currentModel = useModelStore((state) => state.model);

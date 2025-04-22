@@ -28,7 +28,7 @@ import { toast } from "@/app/hooks/use-toast";
 import { useModalStore } from "@/app/store/modal";
 import ModalFooter from "@/app/components/modal/ModalFooter";
 import { BASE_URL } from "@/app/constants/routes";
-import useModal from "@/app/hooks/modal/useModalStore";
+import useModal from "@/app/hooks/modal/useModal";
 
 interface IProps {
   item: {
