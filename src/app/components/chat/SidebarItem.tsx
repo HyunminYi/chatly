@@ -1,4 +1,5 @@
 "use client";
+// TODO -# modalstore -> modal hook 으로 변경
 import React, {
   ChangeEvent,
   ReactNode,
@@ -24,14 +25,12 @@ import {
   updateConversation,
 } from "@/app/actions/conversation";
 import { toast } from "@/app/hooks/use-toast";
-import { Simulate } from "react-dom/test-utils";
-import click = Simulate.click;
 import { useModalStore } from "@/app/store/modal";
-import { undefined } from "zod";
 import ModalFooter from "@/app/components/modal/ModalFooter";
 import { BASE_URL } from "@/app/constants/routes";
+import useModal from "@/app/hooks/modal/useModalStore";
 
-type Props = {
+interface IProps {
   item: {
     id: string;
     href: string;
@@ -39,18 +38,18 @@ type Props = {
     label: string;
   };
   key: string;
-};
-const SidebarItem = ({ item }: Props) => {
+}
+const SidebarItem = ({ item }: IProps) => {
   const { id, href, icon, label } = item;
   const pathname = usePathname();
   const params = useParams<{ conversationId: string }>();
   const router = useRouter();
-
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [value, setValue] = useState(label);
   const openModal = useModalStore((state) => state.openModal);
   const closeModal = useModalStore((state) => state.closeModal);
+  const { onOpen, open, onClose } = useModal();
   const setOpen = useSheetStore((state) => state.setOpen);
 
   const inputRef = useRef<HTMLInputElement>(null);
