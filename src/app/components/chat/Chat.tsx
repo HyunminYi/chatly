@@ -1,18 +1,15 @@
 "use client";
-
+//*
 import Empty from "@/app/components/chat/Empty";
 import Message from "@/app/components/chat/Message";
 import AutoResizingTextarea from "@/app/components/chat/AutoResizingTextarea";
 import { memo, useEffect, useRef } from "react";
 import { Button } from "@/app/components/ui/button";
 import { ArrowUp } from "lucide-react";
-import { useChat, Message as IMessage } from "@ai-sdk/react";
+import { Message as IMessage } from "@ai-sdk/react";
 import { useModelStore } from "@/app/store/model";
-import { useParams, useRouter } from "next/navigation";
-import { addMessages, createConversation } from "@/app/actions/conversation";
-import { CHAT_ROUTES } from "@/app/constants/routes";
-import { useUserStore } from "@/app/store/user";
 import useChatHandler from "@/app/hooks/chat/useChatHandler";
+import { toast } from "@/app/hooks/use-toast";
 
 // type Props = {
 //   initialMessages?: IMessage[];
@@ -43,6 +40,7 @@ const Chat = memo(({ initialMessages }: IProps) => {
       setMessages(initialMessages);
     }
   }, [initialMessages, setMessages]);
+
   // 스크롤바텀 로직
   useEffect(() => {
     if (scrollRef.current) {
@@ -74,10 +72,12 @@ const Chat = memo(({ initialMessages }: IProps) => {
         <form
           className="flex items-center justify-between w-full"
           onSubmit={(e) => {
-            // TODO toast 작업
             if (!model) {
               e.preventDefault();
-              alert("모델을 선택해줘");
+              toast({
+                title: "모델을 선택해줘",
+                variant: "destructive",
+              });
               return;
             }
             handleSubmit(e, { data: model });
