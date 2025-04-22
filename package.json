@@ -43,6 +43,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.74.6",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/pg": "^8.11.11",
@@ -54,7 +55,7 @@
     "tsx": "^4.19.3",
     "typescript": "^5"
   },
-  "description": "* JWT 토큰 인증을 통한 세션관리, 로그인 / 회원가입 기능 * AI/SDK (VERCEL)를 활용한 채팅 UI * Zustand 를 사용한 전역 관리  * Zod,react hook form 을  활용한 스키마 유효성 + 검증",
+  "description": "Chatbot 이현민 포트폴리오",
   "main": "index.js",
   "author": "",
   "license": "ISC"
