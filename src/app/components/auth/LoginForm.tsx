@@ -1,7 +1,6 @@
 "use client";
-import { useFormState } from "react-dom";
 import { useActionState } from "react";
-import useFormValidate from "@/app/hooks/useFormValidate";
+import useFormValidate from "@/app/hooks/form/useFormValidate";
 import { ChangeEvent, useEffect } from "react";
 import { toast } from "@/app/hooks/use-toast";
 import FormCard from "@/app/components/auth/FormCard";
@@ -13,16 +12,15 @@ import { LoginSchema } from "@/app/schemas/auth";
 import { login } from "@/app/actions/login";
 import { Card } from "@/app/components/ui/card";
 import { ILoginFormError } from "@/app/types/form";
+import { AUTH_URL } from "@/app/constants/routes";
 
 const initialError = {
   errorMessage: "",
 } as const;
 
 const LoginForm = () => {
-  // const [error, action] = useFormState(login, null);
   const [error, action, pending] = useActionState(login, initialError);
-  // zod schema validation custom hook
-  const { errors, validateField, hasErrors, resetErrors } =
+  const { errors, validateField, resetErrors } =
     useFormValidate<ILoginFormError>(LoginSchema);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +47,7 @@ const LoginForm = () => {
       title="CHATLY 로그인"
       footer={{
         label: "아직 계정이 없으신가요? 회원가입 하기",
-        href: "/signup",
+        href: AUTH_URL.SIGN_UP,
       }}
     >
       <Card className="p-4 shadow-none bg-slate-200/40 border-blue-600 opacity-70 scale-90">
