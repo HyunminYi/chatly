@@ -1,5 +1,5 @@
 import { create } from "zustand/react";
-import { User } from "@/app/types/db";
+import { TUser } from "@/app/types/db";
 
 // type State = {
 //   user: Partial<User>;
@@ -9,7 +9,7 @@ import { User } from "@/app/types/db";
 // };
 
 interface IState {
-  user: Partial<User>;
+  user: Partial<TUser>;
 }
 interface IAction {
   updateUser: (payload: IState["user"]) => void;

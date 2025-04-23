@@ -4,11 +4,13 @@ import { addMessages, createConversation } from "@/app/actions/conversation";
 import { CHAT_ROUTES } from "@/app/constants/routes";
 import { useParams, useRouter } from "next/navigation";
 import { useChat } from "@ai-sdk/react";
+import { useUser } from "../user/useUser";
 
 export const useChatHandler = () => {
   const router = useRouter();
   const params = useParams<{ conversationId: string }>();
-  const user = useUserStore((state) => state.user);
+  // const user = useUserStore((state) => state.user);
+  const { data: user, isLoading } = useUser();
   const { messages, input, handleInputChange, handleSubmit, setMessages } =
     useChat({
       // 응답이 끝난 시점 (대화기록)
@@ -34,6 +36,7 @@ export const useChatHandler = () => {
     setMessages,
     params,
     user,
+    isLoading,
   };
 };
 
