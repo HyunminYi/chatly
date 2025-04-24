@@ -1,5 +1,4 @@
 "use client";
-import { useUserStore } from "@/app/store/user";
 import { addMessages, createConversation } from "@/app/actions/conversation";
 import { CHAT_ROUTES } from "@/app/constants/routes";
 import { useParams, useRouter } from "next/navigation";

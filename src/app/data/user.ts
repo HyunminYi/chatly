@@ -1,14 +1,14 @@
-import { User } from "@/app/types/db";
 import db from "../../../db";
 import { eq } from "drizzle-orm";
 import { user } from "../../../db/schema";
 import { verifySession } from "@/app/actions/sessions";
 import { LoginSchema } from "@/app/schemas/auth";
 import { z } from "zod";
+import { TUser } from "@/app/types/db";
 
 export const getUserByEmail = async (
   email: z.infer<typeof LoginSchema>["email"],
-): Promise<User | null> => {
+): Promise<TUser | null> => {
   try {
     const existingUser = await db.query.user.findFirst({
       where: eq(user.email, email),
