@@ -7,10 +7,10 @@ type Props = {
 const ModalFooter = ({ onCancel, onConfirm }: Props) => {
   return (
     <>
-      <Button variant="destructive" onClick={onCancel}>
+      <Button variant="destructive" onClick={onConfirm}>
         삭제
       </Button>
-      <Button onClick={onConfirm}>취소</Button>
+      <Button onClick={onCancel}>취소</Button>
     </>
   );
 };

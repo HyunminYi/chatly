@@ -1,6 +1,7 @@
 import { BASE_URL } from "@/app/constants/routes";
 import Link from "next/link";
 import Image from "next/image";
+import { TITLE } from "@/app/constants/common";
 
 const Logo = () => {
   return (
@@ -11,7 +12,7 @@ const Logo = () => {
       <Image width={64} height={64} src="/logo.png" alt={`logo`} />
 
       <h1 className="text-lg font-bold text-slate-700 relative -bottom-0.5  ">
-        CHATLY
+        {TITLE}
       </h1>
     </Link>
   );

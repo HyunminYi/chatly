@@ -1,8 +1,17 @@
 "use client";
 import { Button } from "@/app/components/ui/button";
 import { deleteSession } from "@/app/actions/sessions";
+import { useEffect } from "react";
+import { useUserStore } from "@/app/store/user";
 
 const LogoutButton = () => {
+  const clearUser = useUserStore((state) => state.clearUser);
+
+  useEffect(() => {
+    return () => {
+      clearUser();
+    };
+  }, [clearUser]);
   return (
     <>
       <Button

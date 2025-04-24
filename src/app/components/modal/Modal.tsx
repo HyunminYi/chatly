@@ -1,11 +1,12 @@
+"use client";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
   DialogFooter,
+  DialogHeader,
 } from "@/app/components/ui/dialog";
-import { DialogHeader } from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
 import { useModalStore } from "@/app/store/modal";
 
 const Modal = () => {
@@ -13,20 +14,23 @@ const Modal = () => {
   const config = useModalStore((state) => state.config);
   const closeModal = useModalStore((state) => state.closeModal);
   const { title, description, content, footer } = config || {};
+
   return (
     <>
-      <Dialog open={open} onOpenChange={closeModal}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
-            {description && (
-              <DialogDescription>{description}</DialogDescription>
-            )}
-          </DialogHeader>
-          {content}
-          <DialogFooter>{footer}</DialogFooter>
-        </DialogContent>
-      </Dialog>
+      {open && (
+        <Dialog open={open} onOpenChange={closeModal}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{title}</DialogTitle>
+              {description && (
+                <DialogDescription>{description}</DialogDescription>
+              )}
+            </DialogHeader>
+            {content}
+            <DialogFooter>{footer}</DialogFooter>
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 };

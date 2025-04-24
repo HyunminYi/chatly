@@ -1,6 +1,6 @@
 "use client";
-import { useFormState } from "react-dom";
-import useFormValidate from "@/app/hooks/useFormValidate";
+import { useActionState } from "react";
+import useFormValidate from "@/app/hooks/form/useFormValidate";
 import { ChangeEvent, useEffect } from "react";
 import { toast } from "@/app/hooks/use-toast";
 import FormCard from "@/app/components/auth/FormCard";
@@ -8,16 +8,20 @@ import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import FormMessage from "@/app/components/auth/FormMessage";
 import Submit from "@/app/components/auth/Submit";
-import { TLoginFormError } from "@/app/types/form";
 import { LoginSchema } from "@/app/schemas/auth";
 import { login } from "@/app/actions/login";
 import { Card } from "@/app/components/ui/card";
+import { ILoginFormError } from "@/app/types/form";
+import { AUTH_URL } from "@/app/constants/routes";
+
+const initialError = {
+  errorMessage: "",
+} as const;
 
 const LoginForm = () => {
-  const [error, action] = useFormState(login, null);
-  // zod schema validation custom hook
-  const { errors, validateField } =
-    useFormValidate<TLoginFormError>(LoginSchema);
+  const [error, action, pending] = useActionState(login, initialError);
+  const { errors, validateField, resetErrors } =
+    useFormValidate<ILoginFormError>(LoginSchema);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -27,18 +31,23 @@ const LoginForm = () => {
   useEffect(() => {
     if (error?.errorMessage) {
       toast({
-        title: "회원가입 실패",
+        title: "로그인 실패",
         description: error.errorMessage,
         variant: "destructive",
       });
     }
   }, [error]);
+
+  useEffect(() => {
+    return resetErrors();
+  }, [resetErrors]);
+
   return (
     <FormCard
-      title="로그인"
+      title="CHATLY 로그인"
       footer={{
-        label: "아직 계정이 없으신가요.",
-        href: "/signup",
+        label: "아직 계정이 없으신가요? 회원가입 하기",
+        href: AUTH_URL.SIGN_UP,
       }}
     >
       <Card className="p-4 shadow-none bg-slate-200/40 border-blue-600 opacity-70 scale-90">
@@ -79,7 +88,9 @@ const LoginForm = () => {
           />
           {errors?.pw && <FormMessage>{errors?.pw[0]}</FormMessage>}
         </div>
-        <Submit className="space-y-1 w-full">로그인</Submit>
+        <Submit className="space-y-1 w-full" disabled={pending}>
+          로그인
+        </Submit>
       </form>
     </FormCard>
   );

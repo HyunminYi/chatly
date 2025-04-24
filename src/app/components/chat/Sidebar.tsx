@@ -1,3 +1,4 @@
+//-# new_sidebar_item readonly 화
 import Logo from "@/app/components/chat/Logo";
 import { MessageSquare, Plus } from "lucide-react";
 import { BASE_URL, CHAT_ROUTES } from "@/app/constants/routes";
@@ -10,11 +11,10 @@ const NEW_SIDEBAR_ITEM = {
   label: "새로운 대화",
   icon: <Plus />,
   href: BASE_URL,
-};
+} as const;
 
 const Sidebar = async () => {
   const conversations = await getConversationsByUser();
-
   const formattedItems = [
     NEW_SIDEBAR_ITEM,
     ...conversations.map((conversation) => ({

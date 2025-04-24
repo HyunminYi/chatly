@@ -1,15 +1,21 @@
-import { Props } from "@/app/components/auth/types";
+// -# 내부 타입
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
 import Link from "next/link";
+import { ReactNode } from "react";
 
-const FormCard = ({ title, footer, children }: Props) => {
+export interface IProps {
+  title: string;
+  footer: { label: string; href: string };
+  children: ReactNode;
+}
+
+const FormCard = ({ title, footer, children }: IProps) => {
   return (
     <Card className="w-[500px] flex flex-col items-center border">
       <CardHeader>

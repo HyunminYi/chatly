@@ -1,4 +1,5 @@
 "use client";
+// TODO -# modalstore -> modal hook 으로 변경
 import React, {
   ChangeEvent,
   ReactNode,
@@ -24,14 +25,12 @@ import {
   updateConversation,
 } from "@/app/actions/conversation";
 import { toast } from "@/app/hooks/use-toast";
-import { Simulate } from "react-dom/test-utils";
-import click = Simulate.click;
 import { useModalStore } from "@/app/store/modal";
-import { undefined } from "zod";
 import ModalFooter from "@/app/components/modal/ModalFooter";
 import { BASE_URL } from "@/app/constants/routes";
+import useModal from "@/app/hooks/modal/useModal";
 
-type Props = {
+interface IProps {
   item: {
     id: string;
     href: string;
@@ -39,18 +38,18 @@ type Props = {
     label: string;
   };
   key: string;
-};
-const SidebarItem = ({ item }: Props) => {
+}
+const SidebarItem = ({ item }: IProps) => {
   const { id, href, icon, label } = item;
   const pathname = usePathname();
   const params = useParams<{ conversationId: string }>();
   const router = useRouter();
-
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [value, setValue] = useState(label);
   const openModal = useModalStore((state) => state.openModal);
   const closeModal = useModalStore((state) => state.closeModal);
+  const { onOpen, open, onClose } = useModal();
   const setOpen = useSheetStore((state) => state.setOpen);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -60,6 +59,7 @@ const SidebarItem = ({ item }: Props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
+
   const handleBlur = async () => {
     setIsEditMode(false);
     if (value === label) return null;
@@ -87,8 +87,10 @@ const SidebarItem = ({ item }: Props) => {
       toast({
         title: "삭제 완료",
       });
-      if (params.conversationId === id) router.push(BASE_URL);
       closeModal();
+      if (params?.conversationId === id) {
+        router.push(BASE_URL);
+      }
     } catch (e) {
       console.error(e);
       toast({
@@ -99,6 +101,7 @@ const SidebarItem = ({ item }: Props) => {
   };
   const clickDelete = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
+    setMenuOpen(false);
     //   모달 로직
     openModal({
       title: "정말 삭제하시겠습니까?",
@@ -127,7 +130,7 @@ const SidebarItem = ({ item }: Props) => {
           ? "text-slate-800 bg-sky-600/25  hover:bg-slate-600/20 hover:text-slate-900/90"
           : "text-slate-800 bg-slate-100",
       )}
-      onClick={() => setOpen}
+      onClick={() => setOpen(!open)}
     >
       {/*label 영역*/}
       <div className="flex items-center gap-4">

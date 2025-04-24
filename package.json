@@ -16,12 +16,13 @@
     "@ai-sdk/react": "^1.2.8",
     "@neondatabase/serverless": "^1.0.0",
     "@radix-ui/react-avatar": "^1.1.4",
-    "@radix-ui/react-dialog": "^1.1.10",
+    "@radix-ui/react-dialog": "^1.0.9",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-select": "^2.1.7",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-toast": "^1.2.6",
+    "@tanstack/react-query": "^5.74.4",
     "add": "^2.0.6",
     "ai": "^4.3.5",
     "bcryptjs": "^3.0.2",
@@ -31,10 +32,10 @@
     "drizzle-orm": "^0.41.0",
     "jose": "^6.0.10",
     "lucide-react": "^0.486.0",
-    "next": "14.2.17",
+    "next": "^15.3.1-canary.15",
     "pg": "^8.14.1",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^19",
+    "react-dom": "^19",
     "shadcn": "^2.4.0-canary.17",
     "tailwind-merge": "^3.1.0",
     "tailwindcss-animate": "^1.0.7",
@@ -42,6 +43,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.74.6",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/pg": "^8.11.11",
@@ -53,5 +55,8 @@
     "tsx": "^4.19.3",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276"
+  "description": "Chatbot 이현민 포트폴리오",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
