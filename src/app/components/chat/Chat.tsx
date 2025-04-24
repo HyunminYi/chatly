@@ -30,6 +30,7 @@ const Chat = memo(({ initialMessages }: IProps) => {
     setMessages,
     params,
     user,
+    isLoading,
   } = useChatHandler();
   const model = useModelStore((state) => state.model);
 
@@ -49,6 +50,11 @@ const Chat = memo(({ initialMessages }: IProps) => {
   }, [messages]);
 
   useEffect(() => {}, [messages]);
+
+  if (isLoading) {
+    return <div>로딩중...</div>;
+  }
+
   return (
     <div className="flex flex-col w-[80%] h-full mx-auto">
       <div className="flex-1">
@@ -59,7 +65,7 @@ const Chat = memo(({ initialMessages }: IProps) => {
             {messages.map((message) => (
               <Message
                 key={message.id}
-                name={user.name}
+                name={user?.name}
                 content={message.content}
                 role={message.role}
               />
