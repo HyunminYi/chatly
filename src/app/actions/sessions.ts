@@ -6,9 +6,8 @@ import { JWTPayload, jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { AUTH_URL } from "@/app/constants/routes";
-import { TUser } from "@/app/types/db";
 
-export interface ISessionPayload extends TUser {
+export interface ISessionPayload {
   id: string;
   name: string;
   [key: string]: any;
