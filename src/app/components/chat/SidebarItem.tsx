@@ -59,6 +59,7 @@ const SidebarItem = ({ item }: IProps) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
+
   const handleBlur = async () => {
     setIsEditMode(false);
     if (value === label) return null;
