@@ -1,5 +1,10 @@
+<img src="https://i.imgur.com/LUJnIQa.png" width="1024" alt="thumbnail"/>
+
 # 챗 GPT 컨셉의 인공지능 채팅 서비스 프론트엔드
 > 프론트엔드 next.js 15, Typescript 로 개발한 Ai 기반 채팅 서비스입니다.
+> 단순 api 서버는 next 내장, DB는 neon 과 배포는 vercel으로 작업하였습니다.
+[테스트바로가기](chatly-theta.vercel.app) - chatly-theta.vercel.app
+
 
 
 ## 주요 기능
