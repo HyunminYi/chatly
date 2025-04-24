@@ -4,8 +4,8 @@ import { useUserStore } from "@/app/store/user";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AUTH_URL } from "@/app/constants/routes";
-import { useUser } from "@/app/hooks/user/useUser";
 import { IChildren } from "@/app/types/common";
+import { useUser } from "@/app/hooks/user/useUser";
 
 const UserProvider = ({ children }: IChildren) => {
   const router = useRouter();
