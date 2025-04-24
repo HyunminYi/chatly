@@ -6,10 +6,11 @@ type Props = {
     conversationId: string;
   };
 };
-const Page = async ({ params: { conversationId } }: Props) => {
-  console.log(conversationId, "params");
+const Page = async (props: Props) => {
+  const { conversationId } = await props.params; // next 15 params 비동기적
+  // console.log(params.conversationId, "params");
   const messages = await getMessagesByConversation(conversationId);
-  console.log(messages);
+  // console.log(messages);
 
   return (
     <>
