@@ -6,7 +6,8 @@ import { verify } from "@/app/actions/sessions";
 export const middleware = async (request: NextRequest) => {
   const { pathname } = request.nextUrl;
   const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
-  const cookie = cookies().get("session")?.value;
+  const c = await cookies();
+  const cookie = c.get("session")?.value;
   const session = await verify(cookie);
   //  비로그인
   if (!isPublicRoute && !session) {
