@@ -3,7 +3,7 @@ import { addMessages, createConversation } from "@/app/actions/conversation";
 import { CHAT_ROUTES } from "@/app/constants/routes";
 import { useParams, useRouter } from "next/navigation";
 import { useChat } from "@ai-sdk/react";
-import { useUser } from "@/app/hooks/user/useUser";
+import useUser from "@/app/hooks/user/useUser";
 
 export const useChatHandler = () => {
   const router = useRouter();
