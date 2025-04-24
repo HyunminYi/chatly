@@ -7,7 +7,7 @@ type Props = {
   };
 };
 const Page = async (props: Props) => {
-  const { conversationId } = await props.params; // next 15 params 비동기적
+  const { conversationId } = props.params; // next 15 params 비동기적
   // console.log(params.conversationId, "params");
   const messages = await getMessagesByConversation(conversationId);
   // console.log(messages);
