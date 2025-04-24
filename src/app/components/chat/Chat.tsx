@@ -17,7 +17,7 @@ import { toast } from "@/app/hooks/use-toast";
 // REFACTOR : 인터랙션 / UI 분리
 
 interface IProps {
-  initialMessages: IMessage[];
+  initialMessages?: IMessage[];
 }
 //
 
